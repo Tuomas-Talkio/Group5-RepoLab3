@@ -6,7 +6,6 @@ on: # This action will trigger when an issue is reopened or opened.
       - opened
   pull_request:
     types: [opened]
-
 jobs: # The jobs that run in this workflow
   label_issues: # the first job is named as label_issues
     runs-on: ubuntu-latest # This job will run on the latest version of Ubuntu.
@@ -29,7 +28,6 @@ jobs: # The jobs that run in this workflow
           issue-number: ${{ github.event.issue.number }} # The issue number is obtained from the context of the event that triggered the action.
           body: | # The body of the comment is a message thanking the user for opening the issue.
            Thanks for opening this issue! We'll take a look as soon as possible.
-
       - name: Comment on closed issue
         if: github.event_name == 'issues' && github.event.action == 'closed'
         uses: peter-evans/create-or-update-comment@v1
@@ -37,7 +35,6 @@ jobs: # The jobs that run in this workflow
           issue-number: ${{ github.event.issue.number }}
           body: |
             The issue is now resolved.
-
       - name: Congratulate on first pull request
         if: github.event_name == 'pull_request' && github.event.pull_request.commits == 1
         run: echo "Congratulations on opening your first pull request!"
