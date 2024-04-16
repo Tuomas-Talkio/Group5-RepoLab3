@@ -28,17 +28,13 @@ jobs: # The jobs that run in this workflow
            Thanks for opening this issue! We'll take a look as soon as possible.
 
 # Comment on when an issue is closed
-  close-issues:
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
-    steps:
-      - uses: actions/stale@v5
+      - name: Comment on closed issue
+        uses: peter-evans/create-or-update-comment@v1
         with:
-          close-issue-message: "Thank you for fixing and closing this issue"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-
+          issue-number: ${{ github.event.issue.number }} # The issue number is obtained from the context of the event that triggered the action.
+          body: | # The body of the comment is a message thanking the user for opening the issue.
+           Thanks for clsoing this issue!
+           
 # Comment on when an users opens the first pull request
   greeting:
     runs-on: ubuntu-latest
