@@ -29,4 +29,11 @@ jobs: # The jobs that run in this workflow
 
 # Comment on when an issue is closed
 
-# Comment on when an users opens the first pull request 
+# Comment on when an users opens the first pull request
+      - name: Comment on first pull request
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Congratulations on opening your first pull request!
