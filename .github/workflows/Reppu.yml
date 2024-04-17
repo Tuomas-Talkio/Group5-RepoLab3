@@ -37,8 +37,8 @@ jobs: # The jobs that run in this workflow
       - uses: aws-actions/closed-issue-message@v1
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          issue-message: "Comments on closed issues are hard for our team to see."
-          pr-message: "Comments on closed issues are hard for our team to see."
+          issue-message: "Issue is now closed"
+          pr-message: "Issue is now closed"
 # Comment on when an users opens the first pull request
   greeting:
     runs-on: ubuntu-latest
