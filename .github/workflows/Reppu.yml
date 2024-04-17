@@ -26,20 +26,7 @@ jobs: # The jobs that run in this workflow
           issue-number: ${{ github.event.issue.number }} # The issue number is obtained from the context of the event that triggered the action.
           body: | # The body of the comment is a message thanking the user for opening the issue.
            Thanks for opening this issue! We'll take a look as soon as possible.
-
-# Comment on when an issue is closed
-  comment_on_closed_issue: # New job for commenting when an issue is closed
-    runs-on: ubuntu-latest
-    permissions:
-      issues: write
-    if: github.event_name == 'issues' && github.event.action == 'closed' # Conditional execution for closed issues
-    steps:
-      - name: Comment on closed issue
-        uses: peter-evans/create-or-update-comment@v1
-        with:
-          issue-number: ${{ github.event.issue.number }}
-          body: |
-            This issue has been closed. Thank you for your contribution!
+           
 # Comment on when an users opens the first pull request
   greeting:
     runs-on: ubuntu-latest
